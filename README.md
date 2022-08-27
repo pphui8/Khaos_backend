@@ -1,2 +1,2 @@
 # Khaos_backend
-the backend of [project name] server written in golang
+the backend of Khaos server written in golang
