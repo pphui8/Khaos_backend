@@ -1,0 +1,12 @@
+# configuaure file of firstApp
+
+appName = "firstApp"
+
+[server]
+IP = "0.0.0.0"
+port = 7324
+
+[database]
+type = "mysql"
+user = "root"
+password = "123212321"
