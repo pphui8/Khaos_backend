@@ -1,4 +1,4 @@
-module firstApp
+module khaos
 
 go 1.17
 

@@ -3,7 +3,8 @@
 package main
 
 import (
-	"firstApp/routers"
+	"khaos/routers"
+	"log"
 	"strconv"
 
 	"github.com/BurntSushi/toml"
@@ -31,7 +32,7 @@ func main() {
 	// read conf file
 	_, err := toml.DecodeFile("./conf/app.toml", &MyConf)
 	if err != nil {
-		panic(err)
+		log.Println("no config file found, use default settings")
 	}
 
 	r := gin.Default()

@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"firstApp/api"
+	"khaos/api"
 
 	"github.com/gin-gonic/gin"
 )

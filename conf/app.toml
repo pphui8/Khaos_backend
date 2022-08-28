@@ -1,6 +1,6 @@
 # configuaure file of firstApp
 
-appName = "firstApp"
+appName = "khaos"
 
 [server]
 IP = "0.0.0.0"
