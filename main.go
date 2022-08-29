@@ -37,8 +37,9 @@ func main() {
 
 	r := gin.Default()
 
-	// routers
+	// register routers
 	routers.MountGetRouters(r)
+	
 
 	// start
 	r.Run(":" + strconv.Itoa(MyConf.Server.Port))
