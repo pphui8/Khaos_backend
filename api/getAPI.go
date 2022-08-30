@@ -1,6 +1,7 @@
 package api
 
 import (
+	"khaos/database"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -15,41 +16,34 @@ func Test(context *gin.Context) {
 	context.JSONP(http.StatusOK, response)
 }
 
-/// /Login (POST)
-/// login for manager account
-func Login(context *gin.Context) {
-	// get post body
-
-	// destructer values
-	
+/// /usersnumber (GET)
+/// get the number of user
+func GetUserNumber(context *gin.Context) {
+	result := database.GetUsersNumber()
 	response := gin.H{
-		"status": "200",
+		"usernumber": result,
 	}
 	context.JSONP(http.StatusOK, response)
 }
 
-/// /users (GET)
+/// /usersslist (GET)
 /// get the user list
-func GetUsers(context *gin.Context) {
-	// get post body
-
-	// destructer values
-	
+func GetUserList(context *gin.Context) {
 	response := gin.H{
 		"status": "200",
 	}
 	context.JSONP(http.StatusOK, response)
 }
 
-/// /users/:id (GET)
-/// get the detail message of a user
+/// /user/:id (GET)
+/// get the user detail
 func GetUserDetail(context *gin.Context) {
-	// get post body
-
-	// destructer values
-	
-	response := gin.H{
-		"status": "200",
+	result, err := database.GetUsersDetail(context.Param("id")); if err != nil {
+		response := gin.H{
+			"error": "user not found",
+		}
+		context.JSONP(http.StatusOK, response)
+		return
 	}
-	context.JSONP(http.StatusOK, response)
+	context.JSON(200, result)
 }

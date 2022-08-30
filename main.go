@@ -3,6 +3,7 @@
 package main
 
 import (
+	"khaos/middlewares"
 	"khaos/routers"
 	"log"
 	"strconv"
@@ -36,6 +37,9 @@ func main() {
 	}
 
 	r := gin.Default()
+
+	// set middlewares
+	r.Use(middlewares.Cors())
 
 	// register routers
 	routers.MountGetRouters(r)
