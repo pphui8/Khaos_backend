@@ -9,3 +9,11 @@ type UserDetail struct {
 	Privilege    string
 	Publickey    string
 }
+
+type ListUserData struct {
+	Id           int
+	Username     string
+	Registerdate string
+	Phone        string
+	Privilege    string
+}

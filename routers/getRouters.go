@@ -13,7 +13,7 @@ func MountGetRouters(r *gin.Engine) {
 	// get number of users
 	r.GET("/usernumber", api.GetUserNumber)
 	// get users list
-
+	r.GET("/userslist", api.GetUsersList)
 	// get user detail
 	r.GET("/user/:id", api.GetUserDetail)
 }

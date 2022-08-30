@@ -28,11 +28,10 @@ func GetUserNumber(context *gin.Context) {
 
 /// /usersslist (GET)
 /// get the user list
-func GetUserList(context *gin.Context) {
-	response := gin.H{
-		"status": "200",
-	}
-	context.JSONP(http.StatusOK, response)
+func GetUsersList(context *gin.Context) {
+	result, len := database.GetUsersList()
+	res := result[:len]
+	context.JSON(200, res)
 }
 
 /// /user/:id (GET)

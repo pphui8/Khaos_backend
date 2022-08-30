@@ -25,7 +25,6 @@ the backend of Khaos server written in golang
         "registerdate": "2022/8/30",
         "phone": "19861550668",
         "privilege": "manager",
-        "publickey": "3D75AD4DB3E952BC206E2DAFED2D91DC"
     },
     // .....
 ]
