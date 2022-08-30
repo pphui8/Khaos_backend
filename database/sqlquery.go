@@ -61,28 +61,25 @@ func GetUsersDetail(id string) (UserDetail, error) {
 }
 
 // get the user list
-// limit: 100 lines
-func GetUsersList() ([103]ListUserData, int) {
+// limit: 50 lines
+func GetUsersList(listData *[53]ListUserData, len *int) {
 	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
 	if err != nil {
 		panic(err)
 	}
-	result, err := db.Query("select id, username, registerdate, phone, privilege from user limit 100")
+	result, err := db.Query("select id, username, registerdate, phone, privilege from user limit 50")
 	if err != nil {
 		panic(err)
 	}
-	var listData [103]ListUserData
-	counter := 0
 	for result.Next() {
         if err := result.Scan(
-			&listData[counter].Id,
-			&listData[counter].Username, 
-			&listData[counter].Registerdate,
-			&listData[counter].Phone,
-			&listData[counter].Privilege); err != nil {
+			&listData[*len].Id,
+			&listData[*len].Username, 
+			&listData[*len].Registerdate,
+			&listData[*len].Phone,
+			&listData[*len].Privilege); err != nil {
             panic(err)
         }
-		counter += 1
+		*len += 1
 	}
-	return listData, counter
 }

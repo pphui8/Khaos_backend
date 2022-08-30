@@ -29,7 +29,9 @@ func GetUserNumber(context *gin.Context) {
 /// /usersslist (GET)
 /// get the user list
 func GetUsersList(context *gin.Context) {
-	result, len := database.GetUsersList()
+	var result [53]database.ListUserData
+	var len int = 0
+	database.GetUsersList(&result, &len)
 	res := result[:len]
 	context.JSON(200, res)
 }

@@ -57,26 +57,30 @@ func TestGetUserDEtail(t *testing.T) {
 }
 
 func TestUserList(t *testing.T) {
-	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
-	if err != nil {
-		panic(err)
-	}
-	result, err := db.Query("select id, username, registerdate, phone, privilege from user limit 100")
-	if err != nil {
-		t.Error(err)
-	}
-	var listData [103]database.ListUserData
-	counter := 0
-	for result.Next() {
-        if err := result.Scan(
-			&listData[counter].Id,
-			&listData[counter].Username, 
-			&listData[counter].Registerdate,
-			&listData[counter].Phone,
-			&listData[counter].Privilege); err != nil {
-            t.Error(err)
-        }
-		t.Log(listData[counter])
-		counter += 1
-	}
+	// db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// result, err := db.Query("select id, username, registerdate, phone, privilege from user limit 100")
+	// if err != nil {
+	// 	t.Error(err)
+	// }
+	// var listData [103]database.ListUserData
+	// counter := 0
+	// for result.Next() {
+    //     if err := result.Scan(
+	// 		&listData[counter].Id,
+	// 		&listData[counter].Username, 
+	// 		&listData[counter].Registerdate,
+	// 		&listData[counter].Phone,
+	// 		&listData[counter].Privilege); err != nil {
+    //         t.Error(err)
+    //     }
+	// 	t.Log(listData[counter])
+	// 	counter += 1
+	// }
+	var result [53]database.ListUserData
+	var len int
+	database.GetUsersList(&result, &len)
+	t.Log(len)
 }
