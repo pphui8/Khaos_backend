@@ -1,6 +1,9 @@
 # Khaos_backend
 the backend of Khaos server written in golang
 
+## data flow
+main -> routers -> api ( -> database ) -> api -> return
+
 ## APIs
 
 ### `GET` /
@@ -51,4 +54,20 @@ the backend of Khaos server written in golang
 "status": "successed",
 "id": 1,
 "username": "pphui8",
+```
+
+### `GET` /productlist
+> 获取商品列表
+```json
+[
+    {
+        "id": 1,
+        "productname": "伸腿瞪眼丸",
+        "stock": 999,
+        "sale": 7,
+        "type": "保健品",
+        "status": "在售",
+    }
+    // ...
+]
 ```

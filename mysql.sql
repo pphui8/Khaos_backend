@@ -13,3 +13,20 @@ CREATE TABLE IF NOT EXISTS `user`(
 
 INSERT INTO user (username, password, descript, registerdate, phone, privilege, publickey)
 VALUES ('pphui8', '123212321', 'Ciallo～(∠・ω< )⌒★', '2022/8/30', '19861550668', 'manager', '3D75AD4DB3E952BC206E2DAFED2D91DC');
+
+-- 商品表
+CREATE TABLE IF NOT EXISTS `product`(
+   `id` INT UNSIGNED AUTO_INCREMENT,
+   `productname` VARCHAR(128) NOT NULL,
+   `descript` VARCHAR(256) NOT NULL,      -- 介绍
+   `price` INT UNSIGNED NOT NULL,    -- 价格
+   `stock` INT UNSIGNED NOT NULL,    -- 库存
+   `sale` INT UNSIGNED NOT NULL,    -- 销量
+   `img` VARCHAR(256) NOT NULL,    -- 图片
+   `type` VARCHAR(256) NOT NULL,    -- 类型
+   `status` VARCHAR(256) NOT NULL,    -- 状态
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO product (productname, descript, price, stock, sale, img, type, status)
+VALUES ('伸腿瞪眼丸', '药到病除', 999, 993, 7, 'none', '保健品', '在售');

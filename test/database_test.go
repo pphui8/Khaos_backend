@@ -89,3 +89,10 @@ func TestLogin(t *testing.T) {
 	result, err := database.Login("72DCE6E8801031109C58A89389BAFB86 4")
 	t.Log("result:", result, "err:", err)
 }
+
+func TestProductList(t *testing.T) {
+	var result [53]database.ListProduct
+	var len int
+	database.GetProductList(&result, &len)
+	t.Log("result:", result[:len], "len:", len)
+}

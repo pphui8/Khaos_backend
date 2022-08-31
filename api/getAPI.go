@@ -32,8 +32,7 @@ func GetUsersList(context *gin.Context) {
 	var result [53]database.ListUserData
 	var len int = 0
 	database.GetUsersList(&result, &len)
-	res := result[:len]
-	context.JSON(200, res)
+	context.JSON(200, result[:len])
 }
 
 /// /user/:id (GET)
@@ -47,4 +46,13 @@ func GetUserDetail(context *gin.Context) {
 		return
 	}
 	context.JSON(200, result)
+}
+
+/// /productlist (GET)
+/// get the product list
+func GetProductList(context *gin.Context) {
+	var result [53]database.ListProduct
+	var len int
+	database.GetProductList(&result, &len)
+	context.JSON(200, result[:len])
 }

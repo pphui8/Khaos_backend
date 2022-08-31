@@ -117,3 +117,32 @@ func Login(publickey string) (UserDetail, error) {
 	}
 	return userDetail, nil
 }
+
+// product list
+// limit: 50 lines
+// listData: return value, len: value lengthss
+func GetProductList(listData *[53]ListProduct, len *int) {
+		db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		panic(err)
+	}
+	result, err := db.Query(`
+	select id, productname, stock, sale, type, status
+	from product
+	limit 50`)
+	if err != nil {
+		panic(err)
+	}
+	for result.Next() {
+        if err := result.Scan(
+			&listData[*len].Id,
+			&listData[*len].Productname, 
+			&listData[*len].Stock,
+			&listData[*len].Sale,
+			&listData[*len].Type,
+			&listData[*len].Status); err != nil {
+            panic(err)
+        }
+		*len += 1
+	}
+}
