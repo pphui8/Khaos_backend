@@ -39,13 +39,16 @@ the backend of Khaos server written in golang
 "registerdate": "2022/8/30",
 "phone": "19861550668",
 "privilege": "manager",
-"publickey": "3D75AD4DB3E952BC206E2DAFED2D91DC"
 ```
 
 ### `POST` /login
 > 管理员登录
 ```json
+"publickey": "3D75AD4DB3E952BC206E2DAFED2D91DC"
+```
+返回：
+```json
 "status": "successed",
 "id": 1,
-"publickey": "3D75AD4DB3E952BC206E2DAFED2D91DC"
+"username": "pphui8",
 ```

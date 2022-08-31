@@ -1,5 +1,4 @@
-//! Enter pointer of the program
-
+// ! Enter pointer of the program
 package main
 
 import (
@@ -43,7 +42,7 @@ func main() {
 
 	// register routers
 	routers.MountGetRouters(r)
-	
+	routers.MountPostRouters(r)
 
 	// start
 	r.Run(":" + strconv.Itoa(MyConf.Server.Port))

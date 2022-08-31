@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"strings"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -34,7 +35,7 @@ func GetUsersDetail(id string) (UserDetail, error) {
 		panic(err)
 	}
 	queryStr := fmt.Sprintf(`
-	select id, username, descript, registerdate, phone, privilege, publickey 
+	select id, username, descript, registerdate, phone, privilege 
 	from user
 	where id=%s`, id)
 	result, err := db.Query(queryStr)
@@ -49,8 +50,7 @@ func GetUsersDetail(id string) (UserDetail, error) {
 			&userDetail.Descript, 
 			&userDetail.Registerdate, 
 			&userDetail.Phone,
-			&userDetail.Privilege,
-			&userDetail.Publickey); err != nil {
+			&userDetail.Privilege); err != nil {
             panic(err)
         }
 	}
@@ -62,6 +62,7 @@ func GetUsersDetail(id string) (UserDetail, error) {
 
 // get the user list
 // limit: 50 lines
+// listData: return value, len: value lengthss
 func GetUsersList(listData *[53]ListUserData, len *int) {
 	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
 	if err != nil {
@@ -82,4 +83,37 @@ func GetUsersList(listData *[53]ListUserData, len *int) {
         }
 		*len += 1
 	}
+}
+
+// Login
+func Login(publickey string) (UserDetail, error) {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		panic(err)
+	}
+	publickey = strings.Trim(publickey, " ")
+	queryStr := fmt.Sprintf(`
+	select id, username, descript, registerdate, phone, privilege 
+    from user
+    where publickey='%s' and privilege='manager'`, publickey)
+	result, err := db.Query(queryStr)
+	if err != nil {
+		panic(err)
+	}
+	var userDetail UserDetail;
+	for result.Next() {
+        if err := result.Scan(
+			&userDetail.Id,
+			&userDetail.Username,
+			&userDetail.Descript, 
+			&userDetail.Registerdate, 
+			&userDetail.Phone,
+			&userDetail.Privilege); err != nil {
+            panic(err)
+        }
+	}
+	if userDetail.Id == 0 {
+		return UserDetail{}, errors.New("user not found")
+	}
+	return userDetail, nil
 }

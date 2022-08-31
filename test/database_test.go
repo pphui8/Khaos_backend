@@ -51,9 +51,9 @@ func TestDBSumUser(t *testing.T) {
 
 func TestGetUserDEtail(t *testing.T) {
 	result, err := database.GetUsersDetail("1")
-	t.Log("res:", result,"err", err)
+	t.Log("res:", result, "err", err)
 	result, err = database.GetUsersDetail("2")
-	t.Log("res:", result,"err", err)
+	t.Log("res:", result, "err", err)
 }
 
 func TestUserList(t *testing.T) {
@@ -83,4 +83,9 @@ func TestUserList(t *testing.T) {
 	var len int
 	database.GetUsersList(&result, &len)
 	t.Log(len)
+}
+
+func TestLogin(t *testing.T) {
+	result, err := database.Login("72DCE6E8801031109C58A89389BAFB86 4")
+	t.Log("result:", result, "err:", err)
 }

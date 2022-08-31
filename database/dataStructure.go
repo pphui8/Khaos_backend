@@ -7,10 +7,17 @@ type UserDetail struct {
 	Registerdate string
 	Phone        string
 	Privilege    string
-	Publickey    string
 }
 
 type ListUserData struct {
+	Id           int
+	Username     string
+	Registerdate string
+	Phone        string
+	Privilege    string
+}
+
+type LoginData struct {
 	Id           int
 	Username     string
 	Registerdate string
