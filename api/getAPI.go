@@ -56,3 +56,12 @@ func GetProductList(context *gin.Context) {
 	database.GetProductList(&result, &len)
 	context.JSON(200, result[:len])
 }
+
+/// /order (GET)
+/// get the order list
+func GetOrderList(context *gin.Context) {
+	var result [53]database.ListOrder
+	var len int
+	database.GetOrderList(&result, &len)
+	context.JSON(200, result[:len])
+}

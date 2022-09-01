@@ -122,7 +122,7 @@ func Login(publickey string) (UserDetail, error) {
 // limit: 50 lines
 // listData: return value, len: value lengthss
 func GetProductList(listData *[53]ListProduct, len *int) {
-		db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
 	if err != nil {
 		panic(err)
 	}
@@ -143,6 +143,39 @@ func GetProductList(listData *[53]ListProduct, len *int) {
 			&listData[*len].Sale,
 			&listData[*len].Type,
 			&listData[*len].Status); err != nil {
+            panic(err)
+        }
+		*len += 1
+	}
+}
+
+// orders list
+// limit: 50 lines
+// listData: return value, len: value lengthss
+func GetOrderList(listData *[53]ListOrder, len *int) {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		panic(err)
+	}
+	result, err := db.Query(`
+	select id, userid, username, productid, productname, price, number, date, location, status
+	from orders
+	limit 50`)
+	if err != nil {
+		panic(err)
+	}
+	for result.Next() {
+        if err := result.Scan(
+			&listData[*len].Id,
+			&listData[*len].Userid,
+			&listData[*len].Username,
+			&listData[*len].Productid,
+			&listData[*len].Productname,
+			&listData[*len].Price,
+			&listData[*len].Number,
+			&listData[*len].Date,
+			&listData[*len].Location,
+			&listData[*len].Status,); err != nil {
             panic(err)
         }
 		*len += 1

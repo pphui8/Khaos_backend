@@ -96,3 +96,10 @@ func TestProductList(t *testing.T) {
 	database.GetProductList(&result, &len)
 	t.Log("result:", result[:len], "len:", len)
 }
+
+func TestOrder(t *testing.T) {
+	var result [53]database.ListOrder
+	var len int
+	database.GetOrderList(&result, &len)
+	t.Log("result:", result[:len], "len:", len)
+}

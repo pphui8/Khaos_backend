@@ -18,4 +18,6 @@ func MountGetRouters(r *gin.Engine) {
 	r.GET("/user/:id", api.GetUserDetail)
 	// get product list
 	r.GET("/productlist", api.GetProductList)
+	// get order list
+	r.GET("/orderlist", api.GetOrderList)
 }

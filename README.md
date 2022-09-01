@@ -92,3 +92,23 @@ main -> routers -> api ( -> database ) -> api -> return
     // ...
 ]
 ```
+
+### `GET` /order
+> 获取全部订单列表
+```json
+[
+    {
+        "id": 1,
+        "userid": 1,
+        "username": "pphui8",
+        "productid": 1,
+        "productname": "伸腿瞪眼丸",
+        "price": 999,
+        "number": 1,
+        "date": "2022/8/31",
+        "location": "上海",
+        "status": "未发货"
+    }
+    // ...
+]
+```

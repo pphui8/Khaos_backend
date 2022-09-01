@@ -36,3 +36,16 @@ type ListProduct struct {
 	// 在售 | 停售
 	Status string `gorm:"column:status" db:"status" json:"status" form:"status"`
 }
+
+type ListOrder struct {
+	Id          uint   `gorm:"column:id" db:"id" json:"id" form:"id"`
+	Userid      uint   `gorm:"column:userid" db:"userid" json:"userid" form:"userid"`
+	Username    string `gorm:"column:username" db:"username" json:"username" form:"username"`
+	Productid   uint   `gorm:"column:productid" db:"productid" json:"productid" form:"productid"`
+	Productname string `gorm:"column:productname" db:"productname" json:"productname" form:"productname"`
+	Price       uint   `gorm:"column:price" db:"price" json:"price" form:"price"`
+	Number      uint   `gorm:"column:number" db:"number" json:"number" form:"number"`
+	Date        string `gorm:"column:date" db:"date" json:"date" form:"date"`
+	Location    string `gorm:"column:location" db:"location" json:"location" form:"location"`
+	Status      string `gorm:"column:status" db:"status" json:"status" form:"status"`
+}
