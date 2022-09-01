@@ -85,7 +85,7 @@ func GetUsersList(listData *[53]ListUserData, len *int) {
 	}
 }
 
-// Login
+// Login (manager only)
 func Login(publickey string) (UserDetail, error) {
 	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
 	if err != nil {
@@ -127,7 +127,7 @@ func GetProductList(listData *[53]ListProduct, len *int) {
 		panic(err)
 	}
 	result, err := db.Query(`
-	select id, productname, stock, sale, type, status
+	select id, productname, price, descript, stock, sale, type, status
 	from product
 	limit 50`)
 	if err != nil {
@@ -137,6 +137,8 @@ func GetProductList(listData *[53]ListProduct, len *int) {
         if err := result.Scan(
 			&listData[*len].Id,
 			&listData[*len].Productname, 
+			&listData[*len].Price,
+			&listData[*len].Descript,
 			&listData[*len].Stock,
 			&listData[*len].Sale,
 			&listData[*len].Type,

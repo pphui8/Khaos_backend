@@ -63,6 +63,27 @@ main -> routers -> api ( -> database ) -> api -> return
     {
         "id": 1,
         "productname": "伸腿瞪眼丸",
+        "price": 999,
+        "descipt": "药到病除",
+        "stock": 993,
+        "sale": 7,
+        "type": "保健品",
+        "status": "在售",
+    }
+    // ...
+]
+```
+
+### `GET` /product/:id
+> 获取某商品详情
+```json
+[
+    {
+        "id": 1,
+        "productname": "伸腿瞪眼丸",
+        "descript": "药到病除",
+        "price": 997,
+        "img": "base64: xxxxxxx",
         "stock": 999,
         "sale": 7,
         "type": "保健品",
