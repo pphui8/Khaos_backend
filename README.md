@@ -44,6 +44,12 @@ main -> routers -> api ( -> database ) -> api -> return
 "privilege": "manager",
 ```
 
+<!-- ### `GET` /deluser/:id
+> 删除某用户
+```json
+"status": "succeess"
+``` -->
+
 ### `POST` /login
 > 管理员登录
 ```json
@@ -91,6 +97,23 @@ main -> routers -> api ( -> database ) -> api -> return
     }
     // ...
 ]
+```
+
+### `POST` /addproduct
+> 添加某商品
+```json
+"productname": "伸腿瞪眼丸",
+"descript": "药到病除",
+"price": 997,
+"img": "base64: xxxxxxx",
+"stock": 999,
+"sale": 7,
+"type": "保健品",
+"status": "在售",
+```
+> 返回
+```json
+"status": "success"
 ```
 
 ### `GET` /order

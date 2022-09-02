@@ -103,3 +103,20 @@ func TestOrder(t *testing.T) {
 	database.GetOrderList(&result, &len)
 	t.Log("result:", result[:len], "len:", len)
 }
+
+func TestAddProduct(t *testing.T) {
+	var product database.ProductDetail
+	product.Productname = "脑白金"
+	product.Price = 9999
+	product.Descript = "逢年过节不收礼，收礼就收脑白金"
+	product.Stock = 1000
+	product.Sale = 0
+	product.Type = "保健品"
+	product.Img = "none"
+	product.Status = "停售"
+
+	err := database.AddProduct(product)
+	if err != nil {
+		t.Error(err)
+	}
+}

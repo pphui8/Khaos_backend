@@ -9,4 +9,6 @@ import (
 func MountPostRouters(r *gin.Engine) {
 	// login
 	r.POST("/login", api.Login)
+	// add product
+	r.POST("/addproduct", api.AddProduct)
 }

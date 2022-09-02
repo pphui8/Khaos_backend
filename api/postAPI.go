@@ -27,3 +27,24 @@ func Login(context *gin.Context) {
 	// query from database
 	context.JSON(200, result)
 }
+
+// Add product
+func AddProduct(context *gin.Context) {
+	// json body
+	var body database.ProductDetail
+	// bind json with the struct
+	if err := context.BindJSON(&body); err != nil {
+		return
+	}
+	err := database.AddProduct(body); if err != nil {
+		response := gin.H{
+			"error": "add product failed",
+		}
+		context.JSONP(http.StatusOK, response)
+		return
+	}
+	// query from database
+	context.JSON(200, gin.H{
+		"status": "success",
+	})
+}

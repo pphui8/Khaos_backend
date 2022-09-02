@@ -149,6 +149,31 @@ func GetProductList(listData *[53]ListProduct, len *int) {
 	}
 }
 
+// add a product
+func AddProduct(productDetail ProductDetail) error {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		return err
+	}
+	queryStr := fmt.Sprintf(`
+	INSERT INTO product (productname, descript, price, stock, sale, img, type, status)
+	VALUES ("%s", "%s", %d, %d, %d, "%s", "%s", "%s");
+	`,
+	productDetail.Productname,
+	productDetail.Descript,
+	productDetail.Price,
+	productDetail.Stock,
+	productDetail.Sale,
+	productDetail.Img,
+	productDetail.Type,
+	productDetail.Status)
+	_, err = db.Query(queryStr)
+	if err != nil {
+		return err
+	}
+	return err
+}
+
 // orders list
 // limit: 50 lines
 // listData: return value, len: value lengthss
