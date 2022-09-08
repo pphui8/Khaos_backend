@@ -9,6 +9,11 @@ type UserDetail struct {
 	Privilege    string
 }
 
+type Summary struct {
+	Usernumber  int
+	Ordernumber int
+}
+
 type ListUserData struct {
 	Id           int
 	Username     string
@@ -61,4 +66,18 @@ type ListOrder struct {
 	Date        string `gorm:"column:date" db:"date" json:"date" form:"date"`
 	Location    string `gorm:"column:location" db:"location" json:"location" form:"location"`
 	Status      string `gorm:"column:status" db:"status" json:"status" form:"status"`
+}
+
+type ListAnnouncement struct {
+	Id      uint   `gorm:"column:id" db:"id" json:"id" form:"id"`
+	Title   string `gorm:"column:title" db:"title" json:"title" form:"title"`
+	Content string `gorm:"column:content" db:"content" json:"content" form:"content"`
+	Date    string `gorm:"column:date" db:"date" json:"date" form:"date"`
+}
+
+type AnnouncementDetail struct {
+	Id      uint   `gorm:"column:id" db:"id" json:"id" form:"id"`
+	Title   string `gorm:"column:title" db:"title" json:"title" form:"title"`
+	Content string `gorm:"column:content" db:"content" json:"content" form:"content"`
+	Date    string `gorm:"column:date" db:"date" json:"date" form:"date"`
 }

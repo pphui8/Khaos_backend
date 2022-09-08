@@ -48,3 +48,24 @@ func AddProduct(context *gin.Context) {
 		"status": "success",
 	})
 }
+
+// Add announcement
+func AddAnnouncement(context *gin.Context) {
+	// json body
+	var body database.AnnouncementDetail
+	// bind json with the struct
+	if err := context.BindJSON(&body); err != nil {
+		return
+	}
+	err := database.AddAnnouncement(body); if err != nil {
+		response := gin.H{
+			"error": "add announcement failed",
+		}
+		context.JSONP(http.StatusOK, response)
+		return
+	}
+	// query from database
+	context.JSON(200, gin.H{
+		"status": "success",
+	})
+}

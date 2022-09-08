@@ -85,6 +85,13 @@ func TestUserList(t *testing.T) {
 	t.Log(len)
 }
 
+func TestDeluser(t *testing.T) {
+	err := database.DelUser("1")
+	if err != nil {
+		t.Error(err)
+	}
+}
+
 func TestLogin(t *testing.T) {
 	result, err := database.Login("72DCE6E8801031109C58A89389BAFB86 4")
 	t.Log("result:", result, "err:", err)
@@ -96,6 +103,14 @@ func TestProductList(t *testing.T) {
 	database.GetProductList(&result, &len)
 	t.Log("result:", result[:len], "len:", len)
 }
+
+func TestDelProduct(t *testing.T) {
+	err := database.DelProduct("1")
+	if err != nil {
+		t.Error(err)
+	}
+}
+
 
 func TestOrder(t *testing.T) {
 	var result [53]database.ListOrder
@@ -116,6 +131,32 @@ func TestAddProduct(t *testing.T) {
 	product.Status = "停售"
 
 	err := database.AddProduct(product)
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+func TestGetAnnocements(t *testing.T) {
+	var result [53]database.ListAnnouncement
+	var len int
+	database.GetAnnouncementList(&result, &len)
+	t.Log("result:", result[:len], "len:", len)
+}
+
+func TestAddAnnouncement(t *testing.T) {
+	var announcement database.AnnouncementDetail
+	announcement.Title = "脑白金"
+	announcement.Content = "逢年过节不收礼，收礼就收脑白金"
+	announcement.Date = "2019-12-12"
+
+	err := database.AddAnnouncement(announcement)
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+func TestDelAnnouncement(t *testing.T) {
+	err := database.DelAnnouncement("2")
 	if err != nil {
 		t.Error(err)
 	}

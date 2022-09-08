@@ -31,6 +31,15 @@ CREATE TABLE IF NOT EXISTS `product`(
 INSERT INTO product (productname, descript, price, stock, sale, img, type, status)
 VALUES ('伸腿瞪眼丸', '药到病除', 999, 993, 7, 'none', '保健品', '在售');
 
+INSERT INTO product (productname, descript, price, stock, sale, img, type, status)
+VALUES ('脑白金', '逢年过节不收礼，收礼就收脑白金', 9999, 1000, 0, 'none', '保健品', '停售');
+
+INSERT INTO product (productname, descript, price, stock, sale, img, type, status)
+VALUES ('云南白药', '老白族呢药', 7, 399, 1, 'none', '保健品', '在售');
+
+INSERT INTO product (productname, descript, price, stock, sale, img, type, status)
+VALUES ('iphone14 pro max', '就一个字：贵！', 19999, 100, 0, 'none', '电子产品', '在售');
+
 -- 订单表
 CREATE TABLE IF NOT EXISTS `orders`(
    `id` INT UNSIGNED AUTO_INCREMENT,
@@ -50,3 +59,14 @@ CREATE TABLE IF NOT EXISTS `orders`(
 
 INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
 VALUES (1, 'pphui8', 1, '伸腿瞪眼丸', 999, 1, '2022/8/30', '上海', '已发货');
+
+CREATE TABLE IF NOT EXISTS `announcement`(
+   `id` INT UNSIGNED AUTO_INCREMENT,
+   `title` VARCHAR(128) NOT NULL,      -- 标题
+   `content` VARCHAR(256) NOT NULL,      -- 内容
+   `date` DATE NOT NULL,    -- 发布时间
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO announcement (title, content, date)
+VALUES ('关于停服维护的通知', '本站将于9月20号进行为期2天的停服维护', '2022/9/15');

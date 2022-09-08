@@ -10,12 +10,16 @@ import (
 )
 
 // get the number of users
-func GetUsersNumber() int {
+func GetSummary() Summary {
 	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
 	if err != nil {
 		panic(err)
 	}
-	count := 0
+	var summary Summary = Summary{
+		Usernumber: 0,
+		Ordernumber: 0,
+	}
+	var count int
 	result, err := db.Query("SELECT COUNT(*) FROM user")
 	if err != nil {
 		panic(err)
@@ -25,7 +29,18 @@ func GetUsersNumber() int {
             panic(err)
         }
 	}
-	return count
+	summary.Usernumber = count
+	result, err = db.Query("SELECT COUNT(*) FROM orders")
+	if err != nil {
+		panic(err)
+	}
+	for result.Next() {
+        if err := result.Scan(&count); err != nil {
+            panic(err)
+        }
+	}
+	summary.Ordernumber = count
+	return summary
 }
 
 // get a user`s detail
@@ -58,6 +73,32 @@ func GetUsersDetail(id string) (UserDetail, error) {
 		return UserDetail{}, errors.New("user not found")
 	}
 	return userDetail, nil
+}
+
+// del a user by id
+func DelUser(id string) error {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		panic(err)
+	}
+	// delete data in orders
+	ordersqueryStr := fmt.Sprintf(`
+	DELETE FROM orders
+	WHERE userid=%s
+	`, id)
+	_, err = db.Query(ordersqueryStr)
+	if err != nil {
+		return errors.New("delete user failed")
+	}
+	// delete data in user
+	queryStr := fmt.Sprintf(`
+	DELETE FROM user
+	WHERE id=%s`, id)
+	_, err = db.Query(queryStr)
+	if err != nil {
+		return errors.New("delete user failed")
+	}
+	return nil
 }
 
 // get the user list
@@ -174,6 +215,31 @@ func AddProduct(productDetail ProductDetail) error {
 	return err
 }
 
+// del a product by id
+func DelProduct(id string) error {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		panic(err)
+	}
+	// delete data in orders
+	ordersqueryStr := fmt.Sprintf(`
+	DELETE FROM orders
+	WHERE productid=%s
+	`, id)
+	_, err = db.Query(ordersqueryStr)
+	if err != nil {
+		return errors.New("delete product failed")
+	}
+	queryStr := fmt.Sprintf(`
+	DELETE FROM product
+	WHERE id=%s`, id)
+	_, err = db.Query(queryStr)
+	if err != nil {
+		return errors.New("delete product failed")
+	}
+	return nil
+}
+
 // orders list
 // limit: 50 lines
 // listData: return value, len: value lengthss
@@ -205,4 +271,83 @@ func GetOrderList(listData *[53]ListOrder, len *int) {
         }
 		*len += 1
 	}
+}
+
+// del an order by id
+func DelOrder(id string) error {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		panic(err)
+	}
+	queryStr := fmt.Sprintf(`
+	DELETE FROM orders
+	WHERE id=%s`, id)
+	_, err = db.Query(queryStr)
+	if err != nil {
+		return errors.New("delete order failed")
+	}
+	return nil
+}
+
+// get announcement list
+// limit: 50 lines
+// listData: return value, len: value lengthss
+func GetAnnouncementList(listData *[53]ListAnnouncement, len *int) {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		panic(err)
+	}
+	result, err := db.Query(`
+	select id, title, content, date
+	from announcement
+	limit 50`)
+	if err != nil {
+		panic(err)
+	}
+	for result.Next() {
+		if err := result.Scan(
+			&listData[*len].Id,
+			&listData[*len].Title,
+			&listData[*len].Content,
+			&listData[*len].Date,); err != nil {
+			panic(err)
+		}
+		*len += 1
+	}
+}
+
+// add an announcement
+func AddAnnouncement(announcementDetail AnnouncementDetail) error {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		return err
+	}
+	queryStr := fmt.Sprintf(`
+	INSERT INTO announcement (title, content, date)
+	VALUES ("%s", "%s", "%s");
+	`,
+	announcementDetail.Title,
+	announcementDetail.Content,
+	announcementDetail.Date)
+	_, err = db.Query(queryStr)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// del an announcement by id
+func DelAnnouncement(id string) error {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		panic(err)
+	}
+	queryStr := fmt.Sprintf(`
+	DELETE FROM announcement
+	WHERE id=%s`, id)
+	_, err = db.Query(queryStr)
+	if err != nil {
+		return errors.New("delete announcement failed")
+	}
+	return nil
 }

@@ -4,6 +4,12 @@ the backend of Khaos server written in golang
 ## data flow
 main -> routers -> api ( -> database ) -> api -> return
 
+### todo list
+- [x] 图片处理
+- [ ] 删除操作
+- [x] 修改操作
+- [x] 接入登录接口
+
 ## APIs
 
 ### `GET` /
@@ -12,10 +18,11 @@ main -> routers -> api ( -> database ) -> api -> return
 "status": "200"
 ```
 
-### `GET` /usersnumber
-> 获取用户数量
+### `GET` /summary
+> 获取用户数量、订单数量的统计
 ```json
 "usernumber": "2"
+"ordernumber": "1"
 ```
 
 ### `GET` /userslist
@@ -44,11 +51,12 @@ main -> routers -> api ( -> database ) -> api -> return
 "privilege": "manager",
 ```
 
-<!-- ### `GET` /deluser/:id
+### `GET` /deluser/:id
+#### ！！！！删除某用户会导致其下的订单也被删除
 > 删除某用户
 ```json
 "status": "succeess"
-``` -->
+```
 
 ### `POST` /login
 > 管理员登录
@@ -80,23 +88,11 @@ main -> routers -> api ( -> database ) -> api -> return
 ]
 ```
 
-### `GET` /product/:id
-> 获取某商品详情
+### `GET` /delproduct/:id
+#### !!!删除一个商品会导致关联的订单被全部删除
+> 删除某商品
 ```json
-[
-    {
-        "id": 1,
-        "productname": "伸腿瞪眼丸",
-        "descript": "药到病除",
-        "price": 997,
-        "img": "base64: xxxxxxx",
-        "stock": 999,
-        "sale": 7,
-        "type": "保健品",
-        "status": "在售",
-    }
-    // ...
-]
+"status": "succeess"
 ```
 
 ### `POST` /addproduct
@@ -111,12 +107,12 @@ main -> routers -> api ( -> database ) -> api -> return
 "type": "保健品",
 "status": "在售",
 ```
-> 返回
+> 预期返回
 ```json
 "status": "success"
 ```
 
-### `GET` /order
+### `GET` /orderlist
 > 获取全部订单列表
 ```json
 [
@@ -135,3 +131,37 @@ main -> routers -> api ( -> database ) -> api -> return
     // ...
 ]
 ```
+
+### `GET` /delorder/:id
+> 删除某订单
+```json
+"status": "succeess"
+```
+
+### `GET` /announcementlist
+> 获取公告列表
+```json
+[
+    {
+        "id": 1,
+        "title": "关于停服维护的通知",
+        "content": "本站将于9月20号进行为期2天的停服维护",
+        "date": "2022/9/15"
+    }
+    // ...
+]
+```
+
+### `POST` /addannouncement
+> 添加一条公告
+```json
+"title": "关于停服维护时间延长的通知",
+"content": "由于技术原因，停服时间延长至9月24号",
+"date": "2022/9/21"
+```
+> 预期返回
+```json
+"status": "success"
+```
+
+### `GET` /delannouncement
