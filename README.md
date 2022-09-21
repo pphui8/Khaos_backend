@@ -138,6 +138,26 @@ main -> routers -> api ( -> database ) -> api -> return
 "status": "succeess"
 ```
 
+### `GET` /findorder/:userid
+> 根据用户id查找订单
+```json
+[
+    {
+        "id": 1,
+        "userid": 1,
+        "username": "pphui8",
+        "productid": 1,
+        "productname": "伸腿瞪眼丸",
+        "price": 999,
+        "number": 1,
+        "date": "2022/8/31",
+        "location": "上海",
+        "status": "未发货"
+    }
+    // ...
+]
+```
+
 ### `GET` /announcementlist
 > 获取公告列表
 ```json
@@ -164,4 +184,4 @@ main -> routers -> api ( -> database ) -> api -> return
 "status": "success"
 ```
 
-### `GET` /delannouncement
+<!-- ### `GET` /delannouncement -->

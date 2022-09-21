@@ -136,6 +136,11 @@ func TestAddProduct(t *testing.T) {
 	}
 }
 
+// func TestFindOrderById(t *testing.T) {
+// 	result, err := database.FindOrderById("1")
+// 	t.Log("result:", result, "err:", err)
+// }
+
 func TestGetAnnocements(t *testing.T) {
 	var result [53]database.ListAnnouncement
 	var len int

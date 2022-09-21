@@ -38,6 +38,7 @@ type ListProduct struct {
 	Stock       uint   `gorm:"column:stock" db:"stock" json:"stock" form:"stock"`
 	Sale        uint   `gorm:"column:sale" db:"sale" json:"sale" form:"sale"`
 	Type        string `gorm:"column:type" db:"type" json:"type" form:"type"`
+	Img         string `gorm:"column:img" db:"img" json:"img" form:"img"`
 	// 在售 | 停售
 	Status string `gorm:"column:status" db:"status" json:"status" form:"status"`
 }
