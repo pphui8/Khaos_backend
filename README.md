@@ -167,6 +167,7 @@ main -> routers -> api ( -> database ) -> api -> return
         "title": "关于停服维护的通知",
         "content": "本站将于9月20号进行为期2天的停服维护",
         "date": "2022/9/15"
+        "img": ""
     }
     // ...
 ]
@@ -177,11 +178,16 @@ main -> routers -> api ( -> database ) -> api -> return
 ```json
 "title": "关于停服维护时间延长的通知",
 "content": "由于技术原因，停服时间延长至9月24号",
-"date": "2022/9/21"
+"date": "2022/9/21",
+"img": ""  // 可为空
 ```
 > 预期返回
 ```json
 "status": "success"
 ```
 
-<!-- ### `GET` /delannouncement -->
+### `GET` /delannouncement/:id
+> 删除一条公告
+```json
+"status":"succeess"
+```

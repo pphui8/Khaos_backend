@@ -153,6 +153,7 @@ func TestAddAnnouncement(t *testing.T) {
 	announcement.Title = "脑白金"
 	announcement.Content = "逢年过节不收礼，收礼就收脑白金"
 	announcement.Date = "2019-12-12"
+	announcement.Img = ""
 
 	err := database.AddAnnouncement(announcement)
 	if err != nil {

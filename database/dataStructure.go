@@ -74,6 +74,7 @@ type ListAnnouncement struct {
 	Title   string `gorm:"column:title" db:"title" json:"title" form:"title"`
 	Content string `gorm:"column:content" db:"content" json:"content" form:"content"`
 	Date    string `gorm:"column:date" db:"date" json:"date" form:"date"`
+	Img     string `gorm:"column:img" db:"img" json:"img" form:"img"`
 }
 
 type AnnouncementDetail struct {
@@ -81,4 +82,5 @@ type AnnouncementDetail struct {
 	Title   string `gorm:"column:title" db:"title" json:"title" form:"title"`
 	Content string `gorm:"column:content" db:"content" json:"content" form:"content"`
 	Date    string `gorm:"column:date" db:"date" json:"date" form:"date"`
+	Img     string `gorm:"column:img" db:"img" json:"img" form:"img"`
 }

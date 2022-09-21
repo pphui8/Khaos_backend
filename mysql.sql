@@ -80,8 +80,9 @@ CREATE TABLE IF NOT EXISTS `announcement`(
    `title` VARCHAR(128) NOT NULL,      -- 标题
    `content` VARCHAR(256) NOT NULL,      -- 内容
    `date` DATE NOT NULL,    -- 发布时间
+   `img` VARCHAR(256) NOT NULL,    -- 图片(可为空)
    PRIMARY KEY ( `id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO announcement (title, content, date)
-VALUES ('关于停服维护的通知', '本站将于9月20号进行为期2天的停服维护', '2022/9/15');
+INSERT INTO announcement (title, content, date, img)
+VALUES ('关于停服维护的通知', '本站将于9月20号进行为期2天的停服维护', '2022/9/15', 'https://img1.imgtp.com/2022/09/21/L0n3i5bw.jpg');

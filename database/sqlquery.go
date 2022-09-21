@@ -274,7 +274,7 @@ func GetOrderList(listData *[53]ListOrder, len *int) {
 	}
 }
 
-// orders list
+// find user`s orders
 // limit: 50 lines
 // listData: return value, len: value lengthss
 // func FindOrderListById(listData *[53]ListOrder, len *int, userId string) {
@@ -333,7 +333,7 @@ func GetAnnouncementList(listData *[53]ListAnnouncement, len *int) {
 		panic(err)
 	}
 	result, err := db.Query(`
-	select id, title, content, date
+	select id, title, content, date, img
 	from announcement
 	limit 50`)
 	if err != nil {
@@ -344,7 +344,8 @@ func GetAnnouncementList(listData *[53]ListAnnouncement, len *int) {
 			&listData[*len].Id,
 			&listData[*len].Title,
 			&listData[*len].Content,
-			&listData[*len].Date,); err != nil {
+			&listData[*len].Date,
+			&listData[*len].Img); err != nil {
 			panic(err)
 		}
 		*len += 1
@@ -358,12 +359,13 @@ func AddAnnouncement(announcementDetail AnnouncementDetail) error {
 		return err
 	}
 	queryStr := fmt.Sprintf(`
-	INSERT INTO announcement (title, content, date)
-	VALUES ("%s", "%s", "%s");
+	INSERT INTO announcement (title, content, date, img)
+	VALUES ("%s", "%s", "%s", "%s");
 	`,
 	announcementDetail.Title,
 	announcementDetail.Content,
-	announcementDetail.Date)
+	announcementDetail.Date,
+	announcementDetail.Img)
 	_, err = db.Query(queryStr)
 	if err != nil {
 		return err
