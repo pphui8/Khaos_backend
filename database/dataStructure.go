@@ -84,3 +84,28 @@ type AnnouncementDetail struct {
 	Date    string `gorm:"column:date" db:"date" json:"date" form:"date"`
 	Img     string `gorm:"column:img" db:"img" json:"img" form:"img"`
 }
+
+type ListPost struct {
+	Id           uint   `gorm:"column:id" db:"id" json:"id" form:"id"`
+	Userid       uint   `gorm:"column:userid" db:"userid" json:"userid" form:"userid"`
+	Username     string `gorm:"column:username" db:"username" json:"username" form:"username"`
+	Title        string `gorm:"column:title" db:"title" json:"title" form:"title"`
+	Content      string `gorm:"column:content" db:"content" json:"content" form:"content"`
+	Browsenumber uint   `gorm:"column:browseNumber" db:"browseNumber" json:"browseNumber" form:"browseNumber"`
+	Date         string `gorm:"column:date" db:"date" json:"date" form:"date"`
+	Legal        int8   `gorm:"column:legal" db:"legal" json:"legal" form:"legal"`
+	Elite        int8   `gorm:"column:elite" db:"elite" json:"elite" form:"elite"`
+	Img          string `gorm:"column:img" db:"img" json:"img" form:"img"`
+	Tag          string `gorm:"column:tag" db:"tag" json:"tag" form:"tag"`
+}
+
+type ListComment struct {
+	Id       uint      `gorm:"column:id" db:"id" json:"id" form:"id"`
+	Userid   uint      `gorm:"column:userid" db:"userid" json:"userid" form:"userid"`
+	Username string    `gorm:"column:username" db:"username" json:"username" form:"username"`
+	Postid   uint      `gorm:"column:postid" db:"postid" json:"postid" form:"postid"`
+	Content  string    `gorm:"column:content" db:"content" json:"content" form:"content"`
+	Date     string `gorm:"column:date" db:"date" json:"date" form:"date"`
+	Support  uint      `gorm:"column:support" db:"support" json:"support" form:"support"`
+	Against  uint      `gorm:"column:against" db:"against" json:"against" form:"against"`
+}

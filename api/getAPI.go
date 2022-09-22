@@ -135,3 +135,20 @@ func DelAnnouncement(context *gin.Context) {
 	}
 	context.JSONP(http.StatusOK, response)
 }
+
+/// /postlist (GET)
+/// get the post list
+func GetPostList(context *gin.Context) {
+	var result [53]database.ListPost
+	var len int
+	database.GetPostsList(&result, &len)
+	context.JSON(200, result[:len])
+}
+
+/// /commentlist/:id (GET)
+func GetCommentListByPostId(context *gin.Context) {
+	var result [53]database.ListComment
+	var len int
+	database.GetCommentListByPostId(&result, &len, context.Param("id"))
+	context.JSON(200, result[:len])
+}

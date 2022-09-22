@@ -90,6 +90,15 @@ func DelUser(id string) error {
 	if err != nil {
 		return errors.New("delete user failed")
 	}
+	// delete data in post
+	postqueryStr := fmt.Sprintf(`
+	DELETE FROM post
+	WHERE userid=%s
+	`, id)
+	_, err = db.Query(postqueryStr)
+	if err != nil {
+		return errors.New("delete user failed")
+	}
 	// delete data in user
 	queryStr := fmt.Sprintf(`
 	DELETE FROM user
@@ -387,4 +396,70 @@ func DelAnnouncement(id string) error {
 		return errors.New("delete announcement failed")
 	}
 	return nil
+}
+
+// get posts list
+// limit: 50 lines
+// listData: return value, len: value lengthss
+func GetPostsList(listData *[53]ListPost, len *int) {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		panic(err)
+	}
+	result, err := db.Query(`
+	select id, userid, username, title, content, browsenumber, date, legal, elite, img, tag
+	from post
+	limit 50`)
+	if err != nil {
+		panic(err)
+	}
+	for result.Next() {
+		if err := result.Scan(
+			&listData[*len].Id,
+			&listData[*len].Userid,
+			&listData[*len].Username,
+			&listData[*len].Title,
+			&listData[*len].Content,
+			&listData[*len].Browsenumber,
+			&listData[*len].Date,
+			&listData[*len].Legal,
+			&listData[*len].Elite,
+			&listData[*len].Img,
+			&listData[*len].Tag); err != nil {
+				panic(err)
+			}
+		*len += 1
+	}
+}
+
+// get comment list by post id
+// limit: 50 lines
+// listData: return value, len: value lengthss
+func GetCommentListByPostId(listData *[53]ListComment, len *int, postId string) {
+	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
+	if err != nil {
+		panic(err)
+	}
+	result, err := db.Query(`
+	select id, userid, username, postid, content, date, support, against
+	from comment
+	where postid = ` + postId + `
+	limit 50`)
+	if err != nil {
+		panic(err)
+	}
+		for result.Next() {
+		if err := result.Scan(
+			&listData[*len].Id,
+			&listData[*len].Userid,
+			&listData[*len].Username,
+			&listData[*len].Postid,
+			&listData[*len].Content,
+			&listData[*len].Date,
+			&listData[*len].Support,
+			&listData[*len].Against); err != nil {
+				panic(err)
+			}
+		*len += 1
+	}
 }

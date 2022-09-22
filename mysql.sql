@@ -86,3 +86,40 @@ CREATE TABLE IF NOT EXISTS `announcement`(
 
 INSERT INTO announcement (title, content, date, img)
 VALUES ('关于停服维护的通知', '本站将于9月20号进行为期2天的停服维护', '2022/9/15', 'https://img1.imgtp.com/2022/09/21/L0n3i5bw.jpg');
+
+
+CREATE TABLE IF NOT EXISTS `post`(
+   `id` INT UNSIGNED AUTO_INCREMENT,
+   `userid` INT UNSIGNED NOT NULL,      -- 用户id
+   `username` VARCHAR(128) NOT NULL,      -- 用户名
+   `title` VARCHAR(128) NOT NULL,      -- 标题
+   `content` MEDIUMTEXT NOT NULL,      -- 内容
+   `browseNumber` INT UNSIGNED NOT NULL,    -- 浏览量
+   `date` DATE NOT NULL,    -- 发布时间
+   `legal` TINYINT NOT NULL, -- 是否合法
+   `elite` TINYINT NOT NULL, -- 是否加精
+   `img` VARCHAR(256) NOT NULL,    -- 图片(可为空)
+   `tag` VARCHAR(256) NOT NULL,    -- 标签
+   PRIMARY KEY ( `id` ),
+   FOREIGN KEY ( `userid` ) REFERENCES user ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO post (userid, username, title, content, browseNumber, date, legal, elite, img, tag)
+VALUES (1, 'pphui8', '这是一条帖子', '恭喜本站开始运营', 100, '2022/9/15', 1, 1, 'https://img1.imgtp.com/2022/09/22/QreqdzeV.jpg', '公告');
+
+CREATE TABLE IF NOT EXISTS `comment`(
+   `id` INT UNSIGNED AUTO_INCREMENT,
+   `userid` INT UNSIGNED NOT NULL,      -- 用户id
+   `username` VARCHAR(128) NOT NULL,      -- 用户名
+   `postid` INT UNSIGNED NOT NULL,      -- 帖子id
+   `content` MEDIUMTEXT NOT NULL,      -- 内容
+   `date` DATE NOT NULL,    -- 发布时间
+   `support` INT UNSIGNED NOT NULL,    -- 点赞数
+   `against` INT UNSIGNED NOT NULL,    -- 点踩数
+   PRIMARY KEY ( `id` ),
+   FOREIGN KEY ( `userid` ) REFERENCES user ( `id` ),
+   FOREIGN KEY ( `postid` ) REFERENCES post ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO comment (userid, username, postid, content, date, support, against)
+VALUES (1, 'pphui8', 1, '这是一条评论', '2022/9/15', 100, 0);

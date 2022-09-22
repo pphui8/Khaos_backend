@@ -4,12 +4,6 @@ the backend of Khaos server written in golang
 ## data flow
 main -> routers -> api ( -> database ) -> api -> return
 
-### todo list
-- [x] 图片处理
-- [ ] 删除操作
-- [x] 修改操作
-- [x] 接入登录接口
-
 ## APIs
 
 ### `GET` /
@@ -52,7 +46,7 @@ main -> routers -> api ( -> database ) -> api -> return
 ```
 
 ### `GET` /deluser/:id
-#### ！！！！删除某用户会导致其下的订单也被删除
+#### ！！！！删除某用户会导致其下的订单、帖子和评论也被删除
 > 删除某用户
 ```json
 "status": "succeess"
@@ -191,3 +185,36 @@ main -> routers -> api ( -> database ) -> api -> return
 ```json
 "status":"succeess"
 ```
+
+### `GET` /postlist
+> 获取帖子列表
+```json
+[
+    {
+        "id":1,
+        "userid":1,
+        "username":"pphui8",
+        "title":"这是一条帖子",
+        "content":"恭喜本站开始运营",
+        "browseNumber":100,
+        "date":"2022-09-15",
+        "legal":1,
+        "elite":1,
+        "img":"https://img1.imgtp.com/2022/09/22/QreqdzeV.jpg",
+        "tag":"公告"
+    }
+    // ...
+]
+```
+
+### `GET` /postcomment/:postid
+> 获取帖子评论
+```json
+
+```
+
+### `GET` /delpost/:id
+> 删除一条帖子
+
+### `GET` /delcomment/:id
+> 删除一条评论

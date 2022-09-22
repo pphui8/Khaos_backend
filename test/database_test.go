@@ -167,3 +167,17 @@ func TestDelAnnouncement(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestGetPostList(t *testing.T) {
+	var result [53]database.ListPost
+	var len int = 0
+	database.GetPostsList(&result, &len)
+	t.Error("result:", result[:len], "len:", len)
+}
+
+func TestGetCommentListByPostId(t *testing.T) {
+	var result [53]database.ListComment
+	var len int = 0
+	database.GetCommentListByPostId(&result, &len, "1")
+	t.Error("result:", result[:len], "len:", len)
+}
