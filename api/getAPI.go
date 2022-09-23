@@ -152,3 +152,35 @@ func GetCommentListByPostId(context *gin.Context) {
 	database.GetCommentListByPostId(&result, &len, context.Param("id"))
 	context.JSON(200, result[:len])
 }
+
+/// /delpost/:id (GET)
+/// delete a post
+func DelPost(context *gin.Context) {
+	err := database.DelPost(context.Param("id")); if err != nil {
+		response := gin.H{
+			"error": "post not found",
+		}
+		context.JSONP(http.StatusOK, response)
+		return
+	}
+	response := gin.H{
+		"status": "succeess",
+	}
+	context.JSONP(http.StatusOK, response)
+}
+
+// delcomment/:id (GET)
+// delete a comment
+func DelComment(context *gin.Context) {
+	err := database.DelComment(context.Param("id")); if err != nil {
+		response := gin.H{
+			"error": "comment not found",
+		}
+		context.JSONP(http.StatusOK, response)
+		return
+	}
+	response := gin.H{
+		"status": "succeess",
+	}
+	context.JSONP(http.StatusOK, response)
+}

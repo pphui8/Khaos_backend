@@ -210,11 +210,29 @@ main -> routers -> api ( -> database ) -> api -> return
 ### `GET` /postcomment/:postid
 > 获取帖子评论
 ```json
-
+[
+   {
+      "id": 1,
+      "userid": 1,
+      "username": "pphui8",
+      "postid": 1,
+      "content": "这是一条评论",
+      "date": "2022-09-15",
+      "support": 100,
+      "against": 0
+   }
+   // ...
+]
 ```
 
 ### `GET` /delpost/:id
 > 删除一条帖子
+```json
+"status": "success"
+```
 
 ### `GET` /delcomment/:id
 > 删除一条评论
+```json
+"status": "success"
+```

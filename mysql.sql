@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `post`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO post (userid, username, title, content, browseNumber, date, legal, elite, img, tag)
-VALUES (1, 'pphui8', '这是一条帖子', '恭喜本站开始运营', 100, '2022/9/15', 1, 1, 'https://img1.imgtp.com/2022/09/22/QreqdzeV.jpg', '公告');
+VALUES (1, 'pphui8', '这是一条帖子', '恭喜本站开始运营', 100, '2022/9/15', 1, 1, 'https://img1.imgtp.com/2022/09/22/QreqdzeV.jpg', '讨论');
 
 CREATE TABLE IF NOT EXISTS `comment`(
    `id` INT UNSIGNED AUTO_INCREMENT,

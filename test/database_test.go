@@ -2,7 +2,9 @@ package test
 
 import (
 	"database/sql"
+	"khaos/conf"
 	"khaos/database"
+	"strings"
 	"testing"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -86,6 +88,7 @@ func TestUserList(t *testing.T) {
 }
 
 func TestDeluser(t *testing.T) {
+	database.InitDB()
 	err := database.DelUser("1")
 	if err != nil {
 		t.Error(err)
@@ -180,4 +183,18 @@ func TestGetCommentListByPostId(t *testing.T) {
 	var len int = 0
 	database.GetCommentListByPostId(&result, &len, "1")
 	t.Error("result:", result[:len], "len:", len)
+}
+
+func TestInitDB(t *testing.T) {
+	conf.InitConf()
+	var myconf = conf.MyConf
+	t.Error(myconf)
+	t.Error(strings.Join([]string{myconf.Database.User, ":", myconf.Database.Password, "@tcp(", myconf.Database.Ip, ":", myconf.Database.Port, ")/", myconf.Database.Database, "?charset=utf8"}, ""))
+}
+
+func TestDelPost(t *testing.T) {
+	err := database.DelPost("1")
+	if err != nil {
+		t.Error(err)
+	}
 }

@@ -7,6 +7,8 @@ IP = "0.0.0.0"
 port = 7324
 
 [database]
-type = "mysql"
+database = "khaos"
 user = "root"
 password = "123212321"
+ip = "127.0.0.1"
+port = "3306"

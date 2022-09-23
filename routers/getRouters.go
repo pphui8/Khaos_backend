@@ -34,4 +34,8 @@ func MountGetRouters(r *gin.Engine) {
 	r.GET("/postlist", api.GetPostList)
 	// get comment list by post id
 	r.GET("/commentlist/:id", api.GetCommentListByPostId)
+	// delete a post
+	r.GET("/delpost/:id", api.DelPost)
+	// delete a comment
+	r.GET("/delcomment/:id", api.DelComment)
 }
