@@ -268,40 +268,6 @@ func GetOrderList(listData *[53]ListOrder, len *int) {
 	}
 }
 
-// find user`s orders
-// limit: 50 lines
-// listData: return value, len: value lengths
-// func FindOrderListById(listData *[53]ListOrder, len *int, userId string) {
-// 	db, err := sql.Open("mysql", "root:123212321@tcp(127.0.0.1:3306)/khaos?charset=utf8")
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	result, err := db.Query(`
-// 	select id, userid, username, productid, productname, price, number, date, location, status
-// 	from orders
-// 	where id=` + userId + `
-// 	limit 50`)
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	for result.Next() {
-//         if err := result.Scan(
-// 			&listData[*len].Id,
-// 			&listData[*len].Userid,
-// 			&listData[*len].Username,
-// 			&listData[*len].Productid,
-// 			&listData[*len].Productname,
-// 			&listData[*len].Price,
-// 			&listData[*len].Number,
-// 			&listData[*len].Date,
-// 			&listData[*len].Location,
-// 			&listData[*len].Status,); err != nil {
-//             panic(err)
-//         }
-// 		*len += 1
-// 	}
-// }
-
 // del an order by id
 func DelOrder(id string) error {
 	queryStr := fmt.Sprintf(`
