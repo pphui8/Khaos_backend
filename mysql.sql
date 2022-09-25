@@ -12,13 +12,19 @@ CREATE TABLE IF NOT EXISTS `user`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO user (username, password, descript, registerdate, phone, privilege, publickey)
-VALUES ('pphui8', '123212321', 'Ciallo～(∠・ω< )⌒★', '2022/8/30', '19861550668', 'manager', '72dce6e8801031109c58a89389bafb86');
+VALUES ('new17860391537', '17860391535', '该用户还没有自我介绍', '2022/06/11', 'new518519', 'manager', '7f495cbb4a850873bd464392a282471e');
 
 INSERT INTO user (username, password, descript, registerdate, phone, privilege, publickey)
-VALUES ('pphui89', '123212321', 'なんでやねん！', '2022/9/2', '19861550668', 'user', 'a7c42103ea7c1bc130033ff50f4333c9');
+VALUES ('new3701025', 'new7758521', '该用户还没有自我介绍', '2022/09/20', '17860391536', 'manager', '672d30ea79f6922e47c64a4e60dc7dd3');
 
 INSERT INTO user (username, password, descript, registerdate, phone, privilege, publickey)
-VALUES ('User9527', '123212321', '9527号用户！', '2022/9/8', '19861550668', 'user', '137df37b15f276ee94f38c9fdf3d1d1c');
+VALUES ('new5185191', 'new5185191', '该用户还没有自我介绍', '2022/8/30', '17860391538', 'manager', '05403d9154afe7b8a07c6fdddb321f12');
+
+INSERT INTO user (username, password, descript, registerdate, phone, privilege, publickey)
+VALUES ('坎公万岁', '7758521', '坎公真好玩', '2022/05/30', '17860391539', 'user', 'a7c42103ea7c1bc130033ff50f4333c9');
+
+INSERT INTO user (username, password, descript, registerdate, phone, privilege, publickey)
+VALUES ('pphui8', '123212321', 'Ciallo～(∠・ω< )⌒★', '2022/9/8', '19861550668', 'user', '137df37b15f276ee94f38c9fdf3d1d1c');
 
 -- 商品表
 CREATE TABLE IF NOT EXISTS `product`(
@@ -34,17 +40,7 @@ CREATE TABLE IF NOT EXISTS `product`(
    PRIMARY KEY ( `id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO product (productname, descript, price, stock, sale, img, type, status)
-VALUES ('Nintendo Switch', '任天堂Nintendo Switch日版续航增强版，单机联机', 2199, 993, 7, 'https://img1.imgtp.com/2022/09/14/95WBnjLW.jpg', '硬件设备', '在售');
-
-INSERT INTO product (productname, descript, price, stock, sale, img, type, status)
-VALUES ('qq飞车游戏账号', 'qq飞车永久雷诺、包中A车、S车', 599, 1000, 0, 'https://img1.imgtp.com/2022/09/14/CVcWS5YZ.jpg', '游戏账号', '停售');
-
-INSERT INTO product (productname, descript, price, stock, sale, img, type, status)
-VALUES ('RTX3060', '华硕RTX3060、6GB、风冷游戏显卡', 3599, 399, 1, 'https://img1.imgtp.com/2022/09/14/Fq6dqGYA.jpg', '硬件设备', '在售');
-
-INSERT INTO product (productname, descript, price, stock, sale, img, type, status)
-VALUES ('iphone14 pro max', '8 + 256G土豪金配色，游戏体验极佳', 19999, 99, 1, 'https://img1.imgtp.com/2022/09/14/fPHpFjEa.jpg', '硬件设备', '在售');
+-- check the product.sql
 
 -- 订单表
 CREATE TABLE IF NOT EXISTS `orders`(
@@ -63,14 +59,34 @@ CREATE TABLE IF NOT EXISTS `orders`(
    FOREIGN KEY ( `productid` ) REFERENCES product ( `id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
-VALUES (1, 'pphui8', 2, 'qq飞车游戏账号', 599, 1, '2022/9/24', '上海', '已发货');
+-- 28
 
 INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
-VALUES (2, 'pphui89', 4, 'iphone14 pro max', 19999, 1, '2022/9/25', '云南', '已发货');
+VALUES (1, 'new17860391537', 1, 'BANPRESTO 龙珠Z 孙悟饭 景品手办', 238, 2, '2022/9/25', '上海宝安', '已发货');
 
 INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
-VALUES (3, 'User9527', 4, 'iphone14 pro max', 19999, 1, '2022/9/27', '云南', '未发货');
+VALUES (1, 'new17860391537', 6, '万代 龙珠Z 弗利萨 终极形态 拼装模型', 109, 1, '2022/9/25', '上海宝安', '已取消');
+
+INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
+VALUES (2, 'new3701025', 3, '《七龙珠彩色漫画 魔人布欧篇》1-6 平装版 漫画 港台图书', 300, 1, '2022/9/25', '云南昆明', '未付款');
+
+INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
+VALUES (3, 'new5185191', 3, '万代 S.H.Figuarts龙珠Z萨博 弗利萨军团 魂限定 可动手办', 429, 1, '2022/9/25', '山东烟台', '已收货');
+
+INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
+VALUES (2, 'new3701025', 20, 'bilibili周边 哔哩哔哩小电视双层透明杯子 水杯 创意玻璃杯', 80, 1, '2022/9/26', '云南昆明', '未付款');
+
+INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
+VALUES (4, '渡鸦', 19, '哔哩哔哩 小电视年糕毛绒抱枕 周边', 122, 2, '2022/9/26', '北京大兴', '未付款');
+
+INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
+VALUES (4, '渡鸦', 14, 'CALORIE 龙珠Z午睡套餐U型枕眼罩', 44, 1, '2022/9/27', '北京大兴', '已收货');
+
+INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
+VALUES (4, '渡鸦', 11, '《七龙珠彩色漫画 人造人·赛鲁篇》1-6 平装版漫画 港台图书', 87, 1, '2022/9/27', '北京大兴', '未发货');
+
+INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
+VALUES (3, 'new5185191', 22, 'bilibili哔哩哔哩 人生一串 小电视美食盒蛋', 59, 1, '2022/9/27', '山东烟台', '未付款');
 
 CREATE TABLE IF NOT EXISTS `announcement`(
    `id` INT UNSIGNED AUTO_INCREMENT,
@@ -81,8 +97,17 @@ CREATE TABLE IF NOT EXISTS `announcement`(
    PRIMARY KEY ( `id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO announcement (title, content, date, img)
-VALUES ('关于停服维护的通知', '本站将于9月20号进行为期2天的停服维护', '2022/9/15', 'https://img1.imgtp.com/2022/09/21/L0n3i5bw.jpg');
+insert into announcement (title, content, date, img) 
+values('【9/7】9月7日公告更新', '您好，为了进一步提高游戏运行质量，兹定于2022年9月8日(周三)09：30开始例行维护，预计维护1个小时，维护期间所有游戏房间将无法进入，请大家在维护结束之后再进行游戏，给您带来的不便敬请谅解！  　　xxxx游戏中心，提倡健康、休闲、公平的游戏理念。游戏账号设有充值限额，游戏消耗封顶限额，同时平台还提供了大量的免费游戏及比赛。维护期间将进行网络优化，如果您在更新过程遇到问题，请及时联系客服解决。  　　如果您发现任何BUG或想提出建议，请通过在线客服或反映，将有机会获得一定的奖励！', '2022/09/05', '');
+
+insert into announcement (title, content, date, img) 
+values('【9/12】9月12日公告更新', '2022年9月17日本周一11:00-12:00，龙珠官方将对页面商城进行临时维护。  　　届时将下架2022年9月9日15：00~10月17日10：00七天乐【活动五：商城大促销】活动的各个优惠礼包。仍有需要的玩家，请抓紧时间购买商城物品。  　　因维护给您带来的不便敬请谅解，感谢您长久以来对我们工作的理解与支持', '2022/09/11', '');
+
+insert into announcement (title, content, date, img) 
+values('【9/21】9月21日公告更新', '定于2022年9月22日15：00—18：00进行停服更新维护，请玩家相互转告。  　　停服时间：9月22日15：00—18：00  　　停服范围：全区全服  　　更新内容：修复游戏内部分BUG', '2022-09-21', 'https://img1.imgtp.com/2022/09/21/L0n3i5bw.jpg');
+
+insert into announcement (title, content, date, img) 
+values('【9/2】紧急公告', '开发人员要累死了，求打分多给两分，这个项目一个人的工作量这些应该还可以吧', '2022/09/02', '');
 
 
 CREATE TABLE IF NOT EXISTS `post`(
@@ -101,8 +126,24 @@ CREATE TABLE IF NOT EXISTS `post`(
    FOREIGN KEY ( `userid` ) REFERENCES user ( `id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO post (userid, username, title, content, browseNumber, date, legal, elite, img, tag)
-VALUES (1, 'pphui8', '这是一条帖子', '恭喜本站开始运营', 100, '2022/9/15', 1, 1, 'https://img1.imgtp.com/2022/09/22/QreqdzeV.jpg', '讨论');
+insert into `post` (`userid`, `username`, `title`, `content`, `browseNumber`, `date`, `legal`, `elite`, `img`, `tag`)
+values('4', '渡鸦', '我想睡觉', '累死了救命', '350', '2022-08-30', '1', '1','','日常');
+
+insert into `post` (`userid`, `username`, `title`, `content`, `browseNumber`, `date`, `legal`, `elite`, `img`, `tag`)
+values('4','渡鸦','我好饿啊','咋还不下课啊，老师您不饿吗','250','2022-09-15', '1', '1','https://p3.ssl.qhimgs1.com/t01197ecd9f3154a7f9.jpg','');
+
+insert into `post` (`userid`, `username`, `title`, `content`, `browseNumber`, `date`, `legal`, `elite`, `img`, `tag`)
+values('4','渡鸦','靠背咧卡成狗','啊不是这游戏优化简直有毒','117','2022-09-14','1','1','https://image.so.com/view?q=%E7%86%8A%E7%8C%AB%E8%A1%A8%E6%83%85%E5%8C%85&src=tab_www&correct=%E7%86%8A%E7%8C%AB%E8%A1%A8%E6%83%85%E5%8Chttp://www.yutudou.com/uploads/allimg/170524/1-1F5241Q938.jpg','日常');
+
+insert into `post` (`userid`, `username`, `title`, `content`, `browseNumber`, `date`, `legal`, `elite`, `img`, `tag`)
+values('3','坎公万岁','饿饿饿','想吃章鱼小丸子','75','2022-09-11','1','0','http://n.sinaimg.cn/translate/20170929/Szxw-fymkwyr9687731.jpg', '日常');
+
+insert into `post` (`userid`, `username`, `title`, `content`, `browseNumber`, `date`, `legal`, `elite`, `img`, `tag`)
+values('3','new5185191','为什么我抽不到小公主啊啊啊啊啊！！！！','我愿意用老左一辈子单身换个小公主（狗头保命）','60','2022-08-09','1','1','https://gd-hbimg.huaban.com/6f591e93773996703519beed13cb875a1569699a44e7-B85Uah_fw236','同人');
+
+insert into `post` (`userid`, `username`, `title`, `content`, `browseNumber`, `date`, `legal`, `elite`, `img`, `tag`)
+values('4','渡鸦','好多作业','救命颈椎要断了','45','2022-09-13','1','0','','攻略');
+
 
 CREATE TABLE IF NOT EXISTS `comment`(
    `id` INT UNSIGNED AUTO_INCREMENT,
@@ -118,5 +159,21 @@ CREATE TABLE IF NOT EXISTS `comment`(
    FOREIGN KEY ( `postid` ) REFERENCES post ( `id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 INSERT INTO comment (userid, username, postid, content, date, support, against)
-VALUES (1, 'pphui8', 1, '这是一条评论', '2022/9/15', 100, 0);
+VALUES (1, 'new17860391537', 5, '原来还有人没有抽到大公主吗笑死', '2022/05/26', 24, 4);
+
+INSERT INTO comment (userid, username, postid, content, date, support, against)
+VALUES (1, 'new17860391537', 5, '楼主老倒霉蛋了笑死', '2022/09/24', 65, 0);
+
+INSERT INTO comment (userid, username, postid, content, date, support, against)
+VALUES (1, 'new17860391537', 5, '楼主老倒霉蛋了笑死', '2022/09/24', 1, 0);
+
+INSERT INTO comment (userid, username, postid, content, date, support, against)
+VALUES (1, 'new17860391537', 5, '一首凉凉送给你', '2022/09/24', 0, 1);
+
+INSERT INTO comment (userid, username, postid, content, date, support, against)
+VALUES (5, 'pphui8', 1, '睡吧，吃完就睡小心胖成猪', '2022/05/26', 2, 0);
+
+INSERT INTO comment (userid, username, postid, content, date, support, against)
+VALUES (5, 'pphui8', 3, '怕不是服务器炸了（物理）', '2022/05/24', 2, 0);
