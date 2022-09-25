@@ -64,16 +64,13 @@ CREATE TABLE IF NOT EXISTS `orders`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
-VALUES (1, 'pphui8', 2, 'qq飞车游戏账号', 599, 1, '2022/8/30', '上海', '已发货');
+VALUES (1, 'pphui8', 2, 'qq飞车游戏账号', 599, 1, '2022/9/24', '上海', '已发货');
 
 INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
-VALUES (2, 'pphui89', 4, 'iphone14 pro max', 19999, 1, '2022/8/30', '云南', '已发货');
+VALUES (2, 'pphui89', 4, 'iphone14 pro max', 19999, 1, '2022/9/25', '云南', '已发货');
 
 INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
-VALUES (2, 'pphui89', 4, 'RTX3060', 3599, 1, '2022/9/15', '云南', '未付款');
-
-INSERT INTO `orders` (userid, username, productid, productname, price, number, date, location, status)
-VALUES (3, 'User9527', 4, 'iphone14 pro max', 19999, 1, '2022/9/15', '云南', '未发货');
+VALUES (3, 'User9527', 4, 'iphone14 pro max', 19999, 1, '2022/9/27', '云南', '未发货');
 
 CREATE TABLE IF NOT EXISTS `announcement`(
    `id` INT UNSIGNED AUTO_INCREMENT,

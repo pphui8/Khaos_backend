@@ -1,0 +1,21 @@
+[GIN-debug] GET    /                         --> khaos/api.Test (4 handlers)
+[GIN-debug] GET    /summary                  --> khaos/api.GetSummary (4 handlers)
+[GIN-debug] GET    /userslist                --> khaos/api.GetUsersList (4 handlers)
+[GIN-debug] GET    /user/:id                 --> khaos/api.GetUserDetail (4 handlers)
+[GIN-debug] GET    /deluser/:id              --> khaos/api.DelUser (4 handlers)
+[GIN-debug] GET    /productlist              --> khaos/api.GetProductList (4 handlers)
+[GIN-debug] GET    /delproduct/:id           --> khaos/api.DelProduct (4 handlers)
+[GIN-debug] GET    /orderlist                --> khaos/api.GetOrderList (4 handlers)
+[GIN-debug] GET    /delorder/:id             --> khaos/api.DelOrder (4 handlers)
+[GIN-debug] GET    /announcementlist         --> khaos/api.GetAnnouncementList (4 handlers)
+[GIN-debug] GET    /delannouncement/:id      --> khaos/api.DelAnnouncement (4 handlers)
+[GIN-debug] GET    /postlist                 --> khaos/api.GetPostList (4 handlers)
+[GIN-debug] GET    /commentlist/:id          --> khaos/api.GetCommentListByPostId (4 handlers)
+[GIN-debug] GET    /delpost/:id              --> khaos/api.DelPost (4 handlers)
+[GIN-debug] GET    /delcomment/:id           --> khaos/api.DelComment (4 handlers)
+[GIN-debug] POST   /login                    --> khaos/api.Login (4 handlers)
+[GIN-debug] POST   /addproduct               --> khaos/api.AddProduct (4 handlers)
+[GIN-debug] POST   /addannouncement          --> khaos/api.AddAnnouncement (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :7324

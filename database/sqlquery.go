@@ -6,12 +6,15 @@ import (
 	"fmt"
 	"khaos/conf"
 	"strings"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
 var DB *sql.DB
+var pastOrderNumber []int
 
+// init database
 func InitDB() {
 	var myconf = conf.MyConf	
     //构建连接："用户名:密码@tcp(IP:端口)/数据库?charset=utf8"
@@ -28,13 +31,37 @@ func InitDB() {
         return
     }
     fmt.Println("connnect success")
+
+	// store past 7 days orders data
+	for i := 1; i <= 7; i++ {
+		// get date
+		date := time.Now().AddDate(0, 0, -i).Format("2006/01/02")
+		// get orders from database
+		queryStr := fmt.Sprintf(`
+		select count(date)
+		from orders
+		where date='%s'`, date)
+		result, err := DB.Query(queryStr)
+		if err != nil {
+			panic(err)
+		}
+		var count int
+		for result.Next() {
+			if err := result.Scan(&count); err != nil {
+				panic(err)
+			}
+		}
+		pastOrderNumber = append(pastOrderNumber, count)
+	}
 }
 
 // get the number of users
 func GetSummary() Summary {
+	fmt.Println(pastOrderNumber)
 	var summary Summary = Summary{
 		Usernumber: 0,
 		Ordernumber: 0,
+		PastOrderNumber: pastOrderNumber,
 	}
 	var count int
 	result, err := DB.Query("SELECT COUNT(*) FROM user")

@@ -14,9 +14,11 @@ main -> routers -> api ( -> database ) -> api -> return
 
 ### `GET` /summary
 > 获取用户数量、订单数量的统计
+*注：PastOrderNumber从左到右按日期降序排序
 ```json
-"usernumber": "2"
-"ordernumber": "1"
+"Usernumber": "2",
+"Ordernumber": "1",
+"PastOrderNumber" : [0,0,1,1,0,0,0]
 ```
 
 ### `GET` /userslist

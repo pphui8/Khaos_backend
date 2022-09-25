@@ -10,8 +10,9 @@ type UserDetail struct {
 }
 
 type Summary struct {
-	Usernumber  int
-	Ordernumber int
+	Usernumber      int
+	Ordernumber     int
+	PastOrderNumber []int
 }
 
 type ListUserData struct {
@@ -100,12 +101,12 @@ type ListPost struct {
 }
 
 type ListComment struct {
-	Id       uint      `gorm:"column:id" db:"id" json:"id" form:"id"`
-	Userid   uint      `gorm:"column:userid" db:"userid" json:"userid" form:"userid"`
-	Username string    `gorm:"column:username" db:"username" json:"username" form:"username"`
-	Postid   uint      `gorm:"column:postid" db:"postid" json:"postid" form:"postid"`
-	Content  string    `gorm:"column:content" db:"content" json:"content" form:"content"`
+	Id       uint   `gorm:"column:id" db:"id" json:"id" form:"id"`
+	Userid   uint   `gorm:"column:userid" db:"userid" json:"userid" form:"userid"`
+	Username string `gorm:"column:username" db:"username" json:"username" form:"username"`
+	Postid   uint   `gorm:"column:postid" db:"postid" json:"postid" form:"postid"`
+	Content  string `gorm:"column:content" db:"content" json:"content" form:"content"`
 	Date     string `gorm:"column:date" db:"date" json:"date" form:"date"`
-	Support  uint      `gorm:"column:support" db:"support" json:"support" form:"support"`
-	Against  uint      `gorm:"column:against" db:"against" json:"against" form:"against"`
+	Support  uint   `gorm:"column:support" db:"support" json:"support" form:"support"`
+	Against  uint   `gorm:"column:against" db:"against" json:"against" form:"against"`
 }
